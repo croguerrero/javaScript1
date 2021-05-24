@@ -1,9 +1,7 @@
 name: "build"
 
 on:
-  pull_request:
-  schedule:
-    - cron: "0 0 * * *" # Run everyday
+  pull_request: [push, pull_request]
 
 jobs:
   build:
