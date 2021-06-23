@@ -1,0 +1,45 @@
+INSTALACION NODE CENTOS 8 
+Node.js es un tiempo de ejecución de JavaScript para programar del lado del servidor. Permite a los desarrolladores crear funcionalidades de backend escalables usando JavaScript, un lenguaje que muchos ya conocen del desarrollo web basado en navegadores.
+
+utilizar dnf para instalar el paquete nodejs del repositorio predeterminado AppStream de CentOS
+instalar nvm, el administrador de versiones de Node, y usarlo para instalar y administrar varias versiones de node
+compilar e instalar node del código fuente
+La mayoría de los usuarios deberían usar dnf para instalar versiones previamente empaquetadas e integradas de Node. Si es desarrollador o necesita gestionar varias versiones instaladas de Node por algún motivo, utilice el método nvm. La mayoría de los usuarios rara vez necesitan compilar el código fuente.
+
+Opción 1: Instalar Node desde el repositorio de AppStream de CentOS
+Node.js está disponible en el repositorio de software predeterminado AppStream de CentOS 8. Hay varias versiones disponibles; puede elegir una de ellas habilitando el flujo de módulos correspondiente. Primero, enumere los flujos disponibles del módulo nodejs usando el comando dnf:
+
+sudo dnf module list nodejs
+ 
+Output
+Name                     Stream                   Profiles                                                Summary
+nodejs                   10 [d]                   common [d], development, minimal, s2i                   Javascript runtime
+nodejs                   12                       common, development, minimal, s2i                       Javascript runtime
+Hay dos flujos disponibles: 10 y 12. [d] indica que la versión 10 es el flujo predeterminado. Si prefiere instalar Node.js 12, cambie los flujos de módulos en este momento:
+
+        sudo dnf module enable nodejs:12
+ 
+Se le solicitará que confirme su decisión. Luego, se habilitará el flujo versión 12 y podremos continuar con la instalación. Para obtener más información sobre cómo trabajar con flujos de módulos, consulte la documentación oficial de AppStream de CentOS.
+
+Instale el paquete nodejs con dnf:
+
+            sudo dnf install nodejs
+ 
+Nuevamente, dnf le solicitará confirmar las acciones que realizará. Presione y y, luego, INTRO para hacerlo. El software se instalará.
+
+Compruebe que la instalación se haya realizado de forma correcta haciendo una consulta a node sobre su número de versión:
+
+            node --version
+ 
+Output
+v12.13.1
+Su resultado de --version será diferente si instaló Node.js 10 en su lugar.
+
+Nota: Las dos versiones disponibles de Node.js son versiones de soporte a largo plazo, lo que significa que tienen una ventana de mantenimiento garantizada más prolongada.  Consulte la página oficial de versiones de Node.js para obtener más información sobre el ciclo de vida.
+
+La instalación del paquete nodejs también debería instalar la utilidad del administrador de paquetes de Node, npm, como dependencia. Verifique que también se haya instalado correctamente:
+
+            npm --version
+ 
+Output
+6.12.1
